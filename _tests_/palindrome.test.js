@@ -1,7 +1,7 @@
 const palindrome = string => {
-  let reversed = [...string].reverse().join("");
-  console.log(reversed);
-  return string === reversed;
+  let filteredString = [...string].filter(a => /[a-z]/.test(a));
+  let reversed = [...filteredString].reverse().join("");
+  return filteredString.join("") === reversed;
 };
 
 describe("palindrome", () => {
@@ -11,6 +11,10 @@ describe("palindrome", () => {
   });
   test("when it has even letters", () => {
     const result = palindrome("abba");
+    expect(result).toEqual(true);
+  });
+  test("when it has lots of spaces", () => {
+    const result = palindrome("ne v    er eve n");
     expect(result).toEqual(true);
   });
 });
